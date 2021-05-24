@@ -1,0 +1,2 @@
+rootProject.name = "Coding Chain Android"
+include ':app'
