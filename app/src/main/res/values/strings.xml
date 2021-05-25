@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Coding Chain Android</string>
+    <string name="background_elipses">background elipses</string>
+    <string name="app_title">Coding Chain</string>
+    <string name="app_subtitle">Coding Compete</string>
+    <string name="login_button_text">Login</string>
+    <string name="sign_up_button">Sign Up</string>
 </resources>
