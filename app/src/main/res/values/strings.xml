@@ -5,4 +5,9 @@
     <string name="app_subtitle">Coding Compete</string>
     <string name="login_button_text">Login</string>
     <string name="sign_up_button">Sign Up</string>
+    <string name="back_arrow_button">Back arrow button</string>
+    <string name="login_title">Login</string>
+    <string name="login_title_description">Enter your email address and<br>\n password to access your account</br></string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="password_hint">Enter your password here</string>
 </resources>
