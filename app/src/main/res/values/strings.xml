@@ -10,4 +10,10 @@
     <string name="login_title_description">Enter your email address and<br>\n password to access your account</br></string>
     <string name="email_hint">Enter your email address</string>
     <string name="password_hint">Enter your password here</string>
+    <string name="register_title">Sign Up</string>
+    <string name="register_title_description">Please fill information to create an<br>\n account and sign up to continue</br></string>
+    <string name="firstname_hint">Enter your firstname here</string>
+    <string name="lastname_hint">Enter your lastname here</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
