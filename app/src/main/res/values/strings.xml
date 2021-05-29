@@ -16,4 +16,11 @@
     <string name="lastname_hint">Enter your lastname here</string>
     <string name="confirm_password_hint">Confirm password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="turnaments_title">Home</string>
+    <string name="promotionnal_banner_description">Promotionnal banner for turnaments</string>
+    <string name="month_filter_title">Month</string>
+    <string name="week_filter_title">Week</string>
+    <string name="today_filter_title">Today</string>
+    <string name="turnament_card_description">Turnament card</string>
+    <string name="turnament_placeholder_image_description">Turnament placeholder image</string>
 </resources>
