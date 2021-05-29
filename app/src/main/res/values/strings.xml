@@ -23,4 +23,7 @@
     <string name="today_filter_title">Today</string>
     <string name="turnament_card_description">Turnament card</string>
     <string name="turnament_placeholder_image_description">Turnament placeholder image</string>
+    <string name="turnament_view_title">Turnament details</string>
+    <string name="turnament_image_description">Turnament Image</string>
+    <string name="turnament_level_image_description">Turnament Level Image</string>
 </resources>
