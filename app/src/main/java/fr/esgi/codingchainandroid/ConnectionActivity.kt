@@ -13,17 +13,11 @@ class ConnectionActivity : AppCompatActivity() {
         onClicks()
     }
 
-    private fun login (){
-        // TODO call to connect
-        // if success go to home
-        val intent = Intent(this, HomeActivity::class.java);
-        startActivity(intent)
-    }
-
     private fun onClicks(){
         val loginButton = findViewById<Button>(R.id.login_button)
         loginButton.setOnClickListener {
-            login()
+            val intent = Intent(this, LoginActivity::class.java);
+            startActivity(intent)
         }
 
         val registerButton = findViewById<Button>(R.id.register_button)
