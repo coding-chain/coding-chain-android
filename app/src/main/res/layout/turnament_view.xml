@@ -105,7 +105,7 @@
         app:layout_constraintHorizontal_bias="0"
         >
         <ImageView
-            android:id="@+id/turnament_level_image"
+            android:id="@+id/turnament_level_image_step"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/turnament_steps_drawable"
