@@ -52,6 +52,7 @@
         app:layout_constraintWidth_percent="0.8" />
 
     <Button
+        android:id="@+id/register_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
