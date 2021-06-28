@@ -30,6 +30,12 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, AccountActivity::class.java);
             startActivity(intent)
         }
+        val logoutButton = findViewById<Button>(R.id.logout)
+        logoutButton.setOnClickListener {
+            // todo logout
+            val intent = Intent(this, ConnectionActivity::class.java);
+            startActivity(intent)
+        }
 
     }
 

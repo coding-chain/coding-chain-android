@@ -10,6 +10,7 @@
     <string name="login_title_description">Enter your email address and<br>\n password to access your account</br></string>
     <string name="email_hint">Enter your email address</string>
     <string name="password_hint">Enter your password here</string>
+    <string name="login_error">An error occurred during login</string>
     <string name="register_title">Sign Up</string>
     <string name="register_title_description">Please fill information to create an<br>\n account and sign up to continue</br></string>
     <string name="firstname_hint">Enter your firstname here</string>
@@ -28,5 +29,6 @@
     <string name="turnament_level_image_description">Turnament Level Image</string>
     <string name="tournaments">My tournaments</string>
     <string name="teams">My teams</string>
+    <string name="logout">Logout</string>
     <string name="account">My account</string>
 </resources>
