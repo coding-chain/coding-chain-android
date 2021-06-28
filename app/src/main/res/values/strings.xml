@@ -26,4 +26,7 @@
     <string name="turnament_view_title">Turnament details</string>
     <string name="turnament_image_description">Turnament Image</string>
     <string name="turnament_level_image_description">Turnament Level Image</string>
+    <string name="tournaments">My tournaments</string>
+    <string name="teams">My teams</string>
+    <string name="account">My account</string>
 </resources>

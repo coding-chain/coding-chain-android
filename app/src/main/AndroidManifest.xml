@@ -23,6 +23,9 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".TournamentsActivity" />
+        <activity android:name=".TeamActivity" />
+        <activity android:name=".AccountActivity" />
     </application>
 
 </manifest>
