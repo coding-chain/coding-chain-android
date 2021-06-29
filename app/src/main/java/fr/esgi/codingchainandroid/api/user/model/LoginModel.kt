@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 
 data class LoginModel(
     @Expose
-    @SerializedName("login")
-    val login: String,
+    @SerializedName("email")
+    val email: String,
     @Expose
     @SerializedName("password")
     val password: String,

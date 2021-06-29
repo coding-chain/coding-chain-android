@@ -11,7 +11,6 @@ object AppPreferences {
     private lateinit var preferences: SharedPreferences
 
     //SharedPreferences variables
-    private val IS_LOGGED_IN = Pair("is_logged_in", false)
     private val TOKEN = Pair("token", "")
     // private val USER = Pair("user", "")
 
@@ -27,11 +26,6 @@ object AppPreferences {
     }
 
     //SharedPreferences variables getters/setters
-    var isLogin: Boolean
-        get() = preferences.getBoolean(IS_LOGGED_IN.first, IS_LOGGED_IN.second)
-        set(value) = preferences.edit {
-            it.putBoolean(IS_LOGGED_IN.first, value)
-        }
     var token: String
         get() = preferences.getString(TOKEN.first, TOKEN.second) ?: ""
         set(value) = preferences.edit {

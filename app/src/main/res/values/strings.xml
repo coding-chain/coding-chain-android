@@ -11,6 +11,8 @@
     <string name="email_hint">Enter your email address</string>
     <string name="password_hint">Enter your password here</string>
     <string name="login_error">An error occurred during login</string>
+    <string name="fill_fields">Please fill all the inputs</string>
+    <string name="wrong_email">Please fill a correct email</string>
     <string name="register_title">Sign Up</string>
     <string name="register_title_description">Please fill information to create an<br>\n account and sign up to continue</br></string>
     <string name="firstname_hint">Enter your firstname here</string>

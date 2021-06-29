@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import fr.esgi.codingchainandroid.api.provider.AppPreferences
 
 class HomeActivity : AppCompatActivity() {
 
@@ -32,8 +33,8 @@ class HomeActivity : AppCompatActivity() {
         }
         val logoutButton = findViewById<Button>(R.id.logout)
         logoutButton.setOnClickListener {
-            // todo logout
-            val intent = Intent(this, ConnectionActivity::class.java);
+            AppPreferences.token = ""
+            val intent = Intent(this, MainActivity::class.java);
             startActivity(intent)
         }
 

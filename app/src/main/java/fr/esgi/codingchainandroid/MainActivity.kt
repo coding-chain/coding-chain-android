@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import fr.esgi.codingchainandroid.api.provider.AppPreferences
 
 class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.main_activity);
+        AppPreferences.init(this)
 
         if(isConnected()){
             val intent = Intent(this, HomeActivity::class.java);
@@ -21,7 +23,6 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun isConnected(): Boolean {
-        // TODO check if has a connexion token
-        return false;
+        return AppPreferences.token !== "" ;
     }
 }
