@@ -55,7 +55,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="20sp"
             android:layout_marginTop="15sp"
-            android:text="WIN $10!"
+            android:text="@string/win_10"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -66,7 +66,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="20sp"
-            android:text="Today’s highest token balance wins!"
+            android:text="@string/today_s_highest_token_balance_wins"
             android:textColor="@color/white" />
     </RelativeLayout>
 

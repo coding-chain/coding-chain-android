@@ -12,6 +12,7 @@
     <string name="password_hint">Enter your password here</string>
     <string name="login_error">An error occurred during login</string>
     <string name="fill_fields">Please fill all the inputs</string>
+    <string name="different_passwords">Passwords do not match</string>
     <string name="wrong_email">Please fill a correct email</string>
     <string name="register_title">Sign Up</string>
     <string name="register_title_description">Please fill information to create an<br>\n account and sign up to continue</br></string>
@@ -33,4 +34,7 @@
     <string name="teams">My teams</string>
     <string name="logout">Logout</string>
     <string name="account">My account</string>
+    <string name="win_10">WIN $10!</string>
+    <string name="today_s_highest_token_balance_wins">Today’s highest token balance wins!</string>
+    <string name="an_error_occured_during_register">An error occured during register</string>
 </resources>
