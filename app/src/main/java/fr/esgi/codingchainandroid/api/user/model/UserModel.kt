@@ -1,21 +1,20 @@
 package fr.esgi.codingchainandroid.api.user.model
 
-
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class UserModel(
+
     @Expose
-    @SerializedName("login")
-    val login: String,
+    @SerializedName("id")
+    val id: String,
     @Expose
     @SerializedName("email")
     val email: String,
     @Expose
-    @SerializedName("firstname")
-    val firstname: String,
+    @SerializedName("username")
+    val username: String,
     @Expose
-    @SerializedName("lastname")
-    val lastname: String,
-    // todo real model
+    @SerializedName("rightIds")
+    val rightIds: List<String>,
 )

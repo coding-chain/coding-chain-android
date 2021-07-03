@@ -4,10 +4,13 @@ import android.content.Context
 import fr.esgi.codingchainandroid.api.cacheManager.model.NetworkInterceptor
 import fr.esgi.codingchainandroid.api.cacheManager.model.OfflineCacheInterceptor
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 object ApiClient {
     private val BASE_URL: String = "http://10.0.2.2:5002/api/v1/"
@@ -17,6 +20,9 @@ object ApiClient {
     //private val offlineCacheInterceptor = OfflineCacheInterceptor()
     private var client: OkHttpClient? = null;
     private var retrofit: Retrofit? = null
+
+    private val token: String
+        get() = AppPreferences.token.replace("\"", "")
 
     public fun <T> buildService(service: Class<T>, context: Context): T {
         if (this.client === null) {
@@ -40,6 +46,13 @@ object ApiClient {
                     networkInterceptor
                 )
                 .addInterceptor(OfflineCacheInterceptor(context))
+                .addInterceptor(Interceptor { chain ->
+                    val request: Request.Builder = chain.request().newBuilder()
+                        if(token != "") {
+                            request.addHeader("Authorization", "Bearer $token")
+                        }
+                        chain.proceed(request.build())
+                    })
                 .build()
     }
 }
