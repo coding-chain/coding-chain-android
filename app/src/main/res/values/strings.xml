@@ -14,10 +14,10 @@
     <string name="fill_fields">Please fill all the inputs</string>
     <string name="different_passwords">Passwords do not match</string>
     <string name="wrong_email">Please fill a correct email</string>
+    <string name="register_error">An error occurred during register</string>
     <string name="register_title">Sign Up</string>
     <string name="register_title_description">Please fill information to create an<br>\n account and sign up to continue</br></string>
-    <string name="firstname_hint">Enter your firstname here</string>
-    <string name="lastname_hint">Enter your lastname here</string>
+    <string name="firstname_hint">Enter your username here</string>
     <string name="confirm_password_hint">Confirm password</string>
     <string name="sign_up">Sign Up</string>
     <string name="turnaments_title">Home</string>
