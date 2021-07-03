@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
             loginService.loginUser(LoginModel(email, password)) { loginResponse ->
                 response = loginResponse
                 if (response !== null) {
-                    AppPreferences.token = response!!.get("token").toString()
+                    AppPreferences.token = response!!.get("token").asString
 
                     val intent = Intent(this, HomeActivity::class.java);
                     startActivity(intent)

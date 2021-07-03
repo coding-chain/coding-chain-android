@@ -8,6 +8,10 @@
     <string name="back_arrow_button">Back arrow button</string>
     <string name="login_title">Login</string>
     <string name="account_title">Account</string>
+    <string name="account_email">Email: %1$s</string>
+    <string name="account_username">Username: %1$s</string>
+    <string name="account_rights">Rights: %1$s</string>
+    <string name="none">None</string>
     <string name="login_title_description">Enter your email address and<br>\n password to access your account</br></string>
     <string name="email_hint">Enter your email address</string>
     <string name="password_hint">Enter your password here</string>

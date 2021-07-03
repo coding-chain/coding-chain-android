@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object ApiClient {
-    private val BASE_URL: String = "http://10.0.2.2:5002/api/v1/"
+    private const val BASE_URL: String = "http://10.0.2.2:5002/api/v1/"
     private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val networkInterceptor = NetworkInterceptor()
 
@@ -22,7 +22,7 @@ object ApiClient {
     private var retrofit: Retrofit? = null
 
     private val token: String
-        get() = AppPreferences.token.replace("\"", "")
+        get() = AppPreferences.token
 
     public fun <T> buildService(service: Class<T>, context: Context): T {
         if (this.client === null) {
