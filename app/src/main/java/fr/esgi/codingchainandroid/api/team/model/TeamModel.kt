@@ -8,5 +8,13 @@ data class TeamModel(
     @Expose
     @SerializedName("id")
     val id: String,
-    // todo
+    @Expose
+    @SerializedName("name")
+    val name: String,
+    @Expose
+    @SerializedName("membersIds")
+    val membersIds: List<String>,
+/*    @Expose
+    @SerializedName("participationIds")
+    val participationIds: List<String>,*/
 )

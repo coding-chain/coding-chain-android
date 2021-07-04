@@ -4,10 +4,10 @@ import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
 
-interface RightInterface {
+interface TeamInterface {
 
     @Headers("Content-Type: application/json")
-    @GET("rights/{id}")
+    @GET("teams/{id}")
     fun getOneById(@Path("id") id: String): Call<JsonObject>
 
 }
