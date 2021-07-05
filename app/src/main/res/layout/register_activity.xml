@@ -12,6 +12,7 @@
         android:backgroundTint="@color/white"
         android:contentDescription="@string/back_arrow_button"
         android:src="@drawable/back_arrow"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -44,5 +44,5 @@
     <string name="an_error_occured_during_register">An error occurred during register</string>
     <string name="teams_title">My Teams</string>
     <string name="no_result_team">You are in no team yet</string>
-    <string name="team_members_count"> ( %1$d )</string>
+    <string name="team_members_count"> Members: %1$d</string>
 </resources>
