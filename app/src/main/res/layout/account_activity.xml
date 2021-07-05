@@ -4,14 +4,13 @@
     android:id="@+id/account_page"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:elevation="4dp">
+    android:background="@color/background">
 
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@android:color/transparent"
         android:contentDescription="@string/back_arrow_button"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,6 +28,7 @@
         android:textColor="@color/black"
         android:textSize="42sp"
         android:textStyle="bold"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -45,65 +45,75 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-    <ProgressBar
-        android:id="@+id/progress"
-        android:visibility="gone"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
     <LinearLayout
-        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintVertical_bias="0.25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
-        android:id="@+id/data"
         android:gravity="start"
-        android:visibility="invisible"
         android:layout_width="fill_parent"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/email"
+        <LinearLayout
+            android:elevation="10dp"
+            android:orientation="vertical"
             android:layout_marginTop="60dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/account_email"
-            android:textColor="@color/black"
-            android:textAlignment="viewStart"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="@string/account_username"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/rights"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/account_rights"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:padding="20dp"
+            android:background="@drawable/rounded_tile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:layout_gravity="center"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/blue"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:text=""
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/rights"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
         <Button
             android:id="@+id/logout"
             android:layout_gravity="fill"
             android:layout_height="70dp"
             android:layout_marginTop="70dp"
-            android:layout_marginEnd="20dp"
             android:layout_width="match_parent"
             android:backgroundTint="@color/red"
             android:text="@string/logout" />
+
     </LinearLayout>
 
 

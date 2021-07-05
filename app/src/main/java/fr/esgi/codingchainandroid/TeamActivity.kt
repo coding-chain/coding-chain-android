@@ -49,8 +49,9 @@ class TeamActivity : AppCompatActivity() {
                 jsonTeamIds.forEach { jsonTeamId -> teamIds.add(jsonTeamId.asString) }
                 if(teamIds.size > 0){
                     noResult.visibility = View.GONE
+                    var counter = 0;
                     teamIds.forEach{
-                        loader.visibility = View.VISIBLE
+                        counter ++ ;
                         teamService.getOneById(it) { teamResponse ->
                             if (teamResponse !== null) {
                                 data.visibility = View.VISIBLE
@@ -67,16 +68,17 @@ class TeamActivity : AppCompatActivity() {
                                 teams.add(team)
                                 adapter.notifyDataSetChanged()
                             }
+                            if(counter == teamIds.size){
+                                loader.visibility = View.GONE
+                            }
                         }
-
-                        loader.visibility = View.GONE
                     }
 
                 }else{
                     data.visibility = View.GONE
                     noResult.visibility = View.VISIBLE
+                    loader.visibility = View.GONE
                 }
-                loader.visibility = View.GONE
             }
         }
     }
