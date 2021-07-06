@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/account_title"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="42sp"
         android:textStyle="bold"
         android:elevation="10dp"

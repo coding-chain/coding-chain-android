@@ -83,7 +83,6 @@ class AccountActivity : AppCompatActivity() {
 
         val data = RegisterModel(null, null, null)
         var hasError = false
-        // TODO check validation
 
         if(password.text.toString() != "" && passwordConfirm.text.toString() != ""){
             if(password.text.toString() != passwordConfirm.text.toString()){
