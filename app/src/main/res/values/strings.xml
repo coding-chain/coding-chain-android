@@ -8,8 +8,6 @@
     <string name="back_arrow_button">Back arrow button</string>
     <string name="login_title">Login</string>
     <string name="account_title">Account</string>
-    <string name="account_email">Email: %1$s</string>
-    <string name="account_username">Username: %1$s</string>
     <string name="account_rights">Rights: %1$s</string>
     <string name="none">None</string>
     <string name="login_title_description">Enter your email address and<br>\n password to access your account</br></string>
@@ -42,7 +40,12 @@
     <string name="win_10">WIN $10!</string>
     <string name="today_s_highest_token_balance_wins">Today’s highest token balance wins!</string>
     <string name="an_error_occured_during_register">An error occurred during register</string>
+    <string name="an_error_occured_during_modify">An error occurred during modification</string>
     <string name="teams_title">My Teams</string>
     <string name="no_result_team">You are in no team yet</string>
     <string name="team_members_count"> Members: %1$d</string>
+    <string name="modify">Modify</string>
+    <string name="new_password_hint">Enter your new password here</string>
+    <string name="modify_success">Account modification successful</string>
+    <string name="new_confirm_password_hint">Confirm new password</string>
 </resources>
