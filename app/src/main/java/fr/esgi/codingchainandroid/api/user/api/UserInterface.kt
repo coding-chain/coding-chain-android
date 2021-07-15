@@ -17,6 +17,10 @@ interface UserInterface {
     fun register(@Body registerData: RegisterModel): Call<JsonObject>
 
     @Headers("Content-Type: application/json")
+    @PUT("users/me")
+    fun updateMe(@Body meData: RegisterModel): Call<JsonObject>
+
+    @Headers("Content-Type: application/json")
     @GET("users/me")
     fun getUser(): Call<JsonObject>
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 
 class HomeActivity : AppCompatActivity() {
@@ -16,22 +17,22 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        val tournamentsButton = findViewById<Button>(R.id.tournaments)
+        val tournamentsButton = findViewById<CardView>(R.id.tournaments)
         tournamentsButton.setOnClickListener {
             val intent = Intent(this, TournamentsActivity::class.java);
             startActivity(intent)
         }
-        val teamButton = findViewById<Button>(R.id.teams)
+        val teamButton = findViewById<CardView>(R.id.teams)
         teamButton.setOnClickListener {
             val intent = Intent(this, TeamActivity::class.java);
             startActivity(intent)
         }
-        val accountButton = findViewById<Button>(R.id.account)
+        val accountButton = findViewById<CardView>(R.id.account)
         accountButton.setOnClickListener {
             val intent = Intent(this, AccountActivity::class.java);
             startActivity(intent)
         }
-        val logoutButton = findViewById<Button>(R.id.logout)
+        val logoutButton = findViewById<CardView>(R.id.logout)
         logoutButton.setOnClickListener {
             AppPreferences.token = ""
             val intent = Intent(this, MainActivity::class.java);

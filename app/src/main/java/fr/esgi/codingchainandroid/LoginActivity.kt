@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             error.text = getText(R.string.wrong_email)
             hasError = true;
         }else{
-            error.visibility = View.INVISIBLE;
+            error.visibility = View.GONE;
         }
         return hasError;
     }
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         if (!manageError(email, password)) {
             loader.visibility = View.VISIBLE
             loginButton.isEnabled = false
-            error.visibility = View.INVISIBLE;
+            error.visibility = View.GONE;
             val loginService = LoginService(this.applicationContext)
 
             var response: JsonObject?
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     error.text = getText(R.string.login_error)
-                    error.visibility = View.VISIBLE;
+                    error.visibility = View.GONE;
                 }
                 loader.visibility = View.INVISIBLE
                 loginButton.isEnabled = true

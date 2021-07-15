@@ -10,5 +10,7 @@
     <color name="blue">#FF3700B3</color>
     <color name="green">#4CAF50</color>
     <color name="pink">#E91E63</color>
+    <color name="background">#FFFFFFFF</color>
     <color name="red">#C60000</color>
+    <color name="light_gray">#EDEDED</color>
 </resources>

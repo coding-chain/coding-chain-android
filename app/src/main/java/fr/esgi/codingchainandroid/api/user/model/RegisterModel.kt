@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName
 data class RegisterModel(
     @Expose
     @SerializedName("email")
-    val email: String,
+    var email: String?,
     @Expose
     @SerializedName("password")
-    val password: String,
+    var password: String?,
     @Expose
     @SerializedName("username")
-    val username: String,
+    var username: String?,
 )
