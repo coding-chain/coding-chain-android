@@ -1,4 +1,4 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import fr.esgi.codingchainandroid.adapters.TurnamentsAdapater
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
 import fr.esgi.codingchainandroid.api.turnaments.service.TurnamentService
+import fr.esgi.codingchainandroid.R
 
 class TournamentsActivity : AppCompatActivity() {
 

@@ -1,11 +1,10 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 
 class HomeActivity : AppCompatActivity() {

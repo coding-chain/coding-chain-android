@@ -1,4 +1,4 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,8 @@ import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.gson.JsonObject
-import fr.esgi.codingchainandroid.api.provider.AppPreferences
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.right.service.RightService
 import fr.esgi.codingchainandroid.api.user.model.RegisterModel
 import fr.esgi.codingchainandroid.api.user.model.UserModel

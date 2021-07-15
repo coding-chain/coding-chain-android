@@ -1,17 +1,14 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonObject
-import fr.esgi.codingchainandroid.api.provider.AppPreferences
-import fr.esgi.codingchainandroid.api.user.model.LoginModel
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.user.model.RegisterModel
-import fr.esgi.codingchainandroid.api.user.service.LoginService
 import fr.esgi.codingchainandroid.api.user.service.RegisterService
 
 class RegisterActivity: AppCompatActivity() {

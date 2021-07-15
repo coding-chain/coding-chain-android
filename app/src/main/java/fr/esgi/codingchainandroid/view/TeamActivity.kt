@@ -1,13 +1,12 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.JsonObject
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.adapters.TeamAdapter
-import fr.esgi.codingchainandroid.api.right.service.RightService
 import fr.esgi.codingchainandroid.api.team.model.TeamModel
 import fr.esgi.codingchainandroid.api.team.service.TeamService
 import fr.esgi.codingchainandroid.api.user.service.UserService

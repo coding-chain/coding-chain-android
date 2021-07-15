@@ -1,9 +1,9 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 
 class MainActivity: AppCompatActivity() {

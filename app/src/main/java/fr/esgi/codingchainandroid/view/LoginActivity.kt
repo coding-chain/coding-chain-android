@@ -1,4 +1,4 @@
-package fr.esgi.codingchainandroid
+package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,17 +6,25 @@ import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonObject
+import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 import fr.esgi.codingchainandroid.api.user.model.LoginModel
 import fr.esgi.codingchainandroid.api.user.service.LoginService
+import fr.esgi.codingchainandroid.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.login_activity.*
 
 class LoginActivity : AppCompatActivity() {
+
+    lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         onClicks()
     }
 
@@ -25,10 +33,14 @@ class LoginActivity : AppCompatActivity() {
         var hasError = false;
         if (email.isEmpty() || password.isEmpty() || email.isBlank()
             || password.isBlank()) {
-                error.text = getText(R.string.fill_fields)
+                loginViewModel.errorLiveData.observe(this, Observer {
+                    error.text = getText(R.string.fill_fields)
+                })
             hasError = true;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            error.text = getText(R.string.wrong_email)
+            loginViewModel.errorLiveData.observe(this, Observer {
+                error.text = getText(R.string.wrong_email)
+            })
             hasError = true;
         }else{
             error.visibility = View.GONE;
@@ -37,16 +49,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        val loginButton = findViewById<Button>(R.id.login_submit)
-        val loader = findViewById<ProgressBar>(R.id.progress)
-        val error = findViewById<TextView>(R.id.error)
-        val emailLogin = findViewById<EditText>(R.id.email_login)
-        val passwordLogin = findViewById<EditText>(R.id.login_password)
-        val email = emailLogin.text.toString()
-        val password = passwordLogin.text.toString()
+
+        val email = email_login.text.toString()
+        val password = login_password.text.toString()
         if (!manageError(email, password)) {
-            loader.visibility = View.VISIBLE
-            loginButton.isEnabled = false
+            progress.visibility = View.VISIBLE
+            login_submit.isEnabled = false
             error.visibility = View.GONE;
             val loginService = LoginService(this.applicationContext)
 
@@ -60,11 +68,14 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, HomeActivity::class.java);
                     startActivity(intent)
                 } else {
-                    error.text = getText(R.string.login_error)
+                    loginViewModel.errorLiveData.observe(this, Observer {
+                        error.text = getText(R.string.login_error)
+                    })
                     error.visibility = View.GONE;
+
                 }
-                loader.visibility = View.INVISIBLE
-                loginButton.isEnabled = true
+                progress.visibility = View.INVISIBLE
+                login_submit.isEnabled = true
             }
         }else{
             error.visibility = View.VISIBLE;
