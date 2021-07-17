@@ -1,4 +1,4 @@
-package fr.esgi.codingchainandroid.api.team.model
+package fr.esgi.codingchainandroid.model
 
 
 import com.google.gson.annotations.Expose

@@ -11,11 +11,6 @@ class LoginViewModel : ViewModel(){
 
     val errorLiveData = MutableLiveData<String>()
 
-//    fun login() : LiveData<ServicesSetterGetter>? {
-//        servicesLiveData = MainActivityRepository.getServicesApiCall()
-//        return servicesLiveData
-//    }
-
     fun getUpdatedError() {
         val updatedText = model.error
         errorLiveData.postValue(updatedText)
