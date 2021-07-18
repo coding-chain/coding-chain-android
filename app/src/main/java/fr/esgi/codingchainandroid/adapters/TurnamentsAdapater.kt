@@ -1,13 +1,20 @@
 package fr.esgi.codingchainandroid.adapters
 
 import android.content.Context
+import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
+import fr.esgi.codingchainandroid.TurnamentViewActivity
 import fr.esgi.codingchainandroid.api.turnaments.TurnamentModel
+import java.io.Serializable
+
 
 class TurnamentsAdapater(
     private val context: Context,
@@ -46,6 +53,12 @@ class TurnamentsAdapater(
         }
 
         val turnament = getItem(position)
+
+        view.setOnClickListener {
+            val intent = Intent(context,TurnamentViewActivity::class.java)
+            intent.putExtra("turnament", Gson().toJson(turnament))
+            context.startActivity(intent)
+        }
 
         val name = holder.name
         val participation = holder.participations

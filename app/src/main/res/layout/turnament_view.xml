@@ -111,6 +111,7 @@
             android:src="@drawable/turnament_steps_drawable"
             android:contentDescription="@string/turnament_level_image_description" />
         <TextView
+            android:id="@+id/turnament_steps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12 steps"

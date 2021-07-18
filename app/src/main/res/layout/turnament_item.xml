@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/turnament_card"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/turnament_card_description"
         android:src="@drawable/turnament_card_drawable" />
@@ -42,10 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="40sp"
+        android:layout_marginEnd="50sp"
         android:text="200"
         android:textColor="@color/black"/>
-
-
-
 </RelativeLayout>
