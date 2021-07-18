@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
-import fr.esgi.codingchainandroid.api.user.model.LoginModel
 import fr.esgi.codingchainandroid.api.user.service.LoginService
+import fr.esgi.codingchainandroid.model.LoginModel
 import fr.esgi.codingchainandroid.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.login_activity.*
 
@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
             var response: JsonObject?
 
-            loginService.loginUser(LoginModel(email, password)) { loginResponse ->
+            loginService.loginUser(LoginModel(email, password, "")) { loginResponse ->
                 response = loginResponse
                 if (response !== null) {
                     AppPreferences.token = response!!.get("token").asString

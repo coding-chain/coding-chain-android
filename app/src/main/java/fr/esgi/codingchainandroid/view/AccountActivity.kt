@@ -6,85 +6,62 @@ import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.right.service.RightService
-import fr.esgi.codingchainandroid.api.user.model.RegisterModel
-import fr.esgi.codingchainandroid.api.user.model.UserModel
+import fr.esgi.codingchainandroid.model.RegisterModel
 import fr.esgi.codingchainandroid.api.user.service.UserService
+import fr.esgi.codingchainandroid.model.UserModel
+import fr.esgi.codingchainandroid.viewmodel.AccountViewModel
+import fr.esgi.codingchainandroid.viewmodel.TeamViewModel
+import kotlinx.android.synthetic.main.account_activity.*
+import kotlinx.android.synthetic.main.account_activity.back_button
+import kotlinx.android.synthetic.main.account_activity.progress
+import kotlinx.android.synthetic.main.team_activity.*
 
 class AccountActivity : AppCompatActivity() {
 
     var user: UserModel? = null
+    lateinit var userViewModel: AccountViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account_activity)
+        userViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         onClicks()
         fetchMe()
     }
 
     private fun fetchMe(){
-        val loader = findViewById<ProgressBar>(R.id.progress)
-        val email = findViewById<TextView>(R.id.email)
-        val username = findViewById<TextView>(R.id.username)
-        val rights = findViewById<TextView>(R.id.rights)
-        loader.visibility = View.VISIBLE
-        val userService = UserService(this.applicationContext)
+        progress.visibility = View.VISIBLE
 
-        var response: JsonObject?
-
-        userService.getUser() { meResponse ->
-            response = meResponse
-            if (response !== null) {
-                email.text = response!!.get("email").asString
-                username.text =  response!!.get("username").asString
-                val jsonRightIds = response!!.get("rightIds").asJsonArray
-                val rightIds: MutableList<String> = ArrayList()
-                for (i in 0 until jsonRightIds.size()) {
-                    rightIds.add(jsonRightIds.get(i).asString)
+        userViewModel.getUser(this.applicationContext)!!.observe(this, Observer { result ->
+            progress.visibility = View.VISIBLE
+            if (result.rights.isNotEmpty()) {
+                var rightsStr = ""
+                result.rights.forEach{
+                    rightsStr += it.name + " "
                 }
-                user = UserModel(response!!.get("id").asString,
-                    response!!.get("email").asString,
-                    response!!.get("username").asString,
-                    rightIds)
-                if(rightIds.isNotEmpty()){
-                    val rightService = RightService(this.applicationContext)
-                    var rightResponse: JsonObject?
-                    var rightsTxt = "";
-                    rightIds.forEach {
-                        rightService.getOneById(it) { rResponse ->
-                            rightResponse = rResponse!!.get("result").asJsonObject
-                            if (rightResponse != null) {
-                                rightsTxt += rightResponse!!.get("name").asString + " "
-                                rights.text = getString(R.string.account_rights, rightsTxt)
-                            }
-                        }
-                    }
-                    rights.text = getString(R.string.account_rights, rightsTxt)
-                }else {
-                    rights.text = getString(R.string.account_rights, getString(R.string.none))
-                }
+                rights.text = getString(R.string.account_rights, rightsStr)
+            } else {
+                rights.text = getString(R.string.account_rights, getString(R.string.none))
             }
-            loader.visibility = View.GONE
-        }
+            email.setText(result.email)
+            username.setText(result.username)
+            progress.visibility = View.GONE
+        })
     }
 
     private fun updateMe() {
         val userService = UserService(this.applicationContext)
-        val email = findViewById<TextView>(R.id.email)
-        val error = findViewById<TextView>(R.id.error)
-        val username = findViewById<TextView>(R.id.username)
-        val password = findViewById<TextView>(R.id.password)
-        val passwordConfirm = findViewById<TextView>(R.id.password_confirm)
-        val loader = findViewById<ProgressBar>(R.id.progress)
-        val modifyButton = findViewById<Button>(R.id.modify)
 
         val data = RegisterModel(null, null, null)
         var hasError = false
 
-        if(password.text.toString() != "" && passwordConfirm.text.toString() != ""){
-            if(password.text.toString() != passwordConfirm.text.toString()){
+        if(password.text.toString() != "" && password_confirm.text.toString() != ""){
+            if(password.text.toString() != password_confirm.text.toString()){
                 error.text = getString(R.string.different_passwords)
                 hasError = true
             }else{
@@ -105,8 +82,8 @@ class AccountActivity : AppCompatActivity() {
         if(hasError){
             error.visibility = View.VISIBLE
         }else{
-            modifyButton.isEnabled = false
-            loader.visibility = View.VISIBLE
+            modify.isEnabled = false
+            progress.visibility = View.VISIBLE
             userService.updateMe(data) { response ->
                 if(response != null){
                     error.visibility = View.GONE
@@ -115,20 +92,18 @@ class AccountActivity : AppCompatActivity() {
                     error.visibility = View.VISIBLE
                     error.text = getString(R.string.an_error_occured_during_modify)
                 }
-                loader.visibility = View.GONE
-                modifyButton.isEnabled = true
+                progress.visibility = View.GONE
+                modify.isEnabled = true
             }
         }
     }
 
     private fun onClicks() {
-        val backButton = findViewById<ImageButton>(R.id.back_button)
-        backButton.setOnClickListener {
+        back_button.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java);
             startActivity(intent)
         }
-        val modifyButton = findViewById<Button>(R.id.modify)
-        modifyButton.setOnClickListener {
+        modify.setOnClickListener {
             updateMe()
         }
     }

@@ -1,8 +1,8 @@
 package fr.esgi.codingchainandroid.api.user.api
 
 import com.google.gson.JsonObject
-import fr.esgi.codingchainandroid.api.user.model.LoginModel
-import fr.esgi.codingchainandroid.api.user.model.RegisterModel
+import fr.esgi.codingchainandroid.model.LoginModel
+import fr.esgi.codingchainandroid.model.RegisterModel
 import retrofit2.Call
 import retrofit2.http.*
 

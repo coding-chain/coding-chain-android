@@ -6,7 +6,7 @@ import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.api.provider.ApiClient
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 import fr.esgi.codingchainandroid.api.user.api.UserInterface
-import fr.esgi.codingchainandroid.api.user.model.RegisterModel
+import fr.esgi.codingchainandroid.model.RegisterModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

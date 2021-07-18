@@ -7,7 +7,7 @@ import fr.esgi.codingchainandroid.model.LoginModel
 
 class LoginViewModel : ViewModel(){
 
-    private val model = LoginModel();
+    private val model = LoginModel("","","");
 
     val errorLiveData = MutableLiveData<String>()
 

@@ -8,7 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.api.user.model.RegisterModel
+import fr.esgi.codingchainandroid.model.RegisterModel
 import fr.esgi.codingchainandroid.api.user.service.RegisterService
 
 class RegisterActivity: AppCompatActivity() {

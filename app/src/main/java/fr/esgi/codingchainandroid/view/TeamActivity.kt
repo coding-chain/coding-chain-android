@@ -26,8 +26,7 @@ class TeamActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        val backButton = findViewById<ImageButton>(R.id.back_button)
-        backButton.setOnClickListener {
+        back_button.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java);
             startActivity(intent)
         }
