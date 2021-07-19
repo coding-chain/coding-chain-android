@@ -17,12 +17,12 @@ interface TurnamentInterface {
 
     @Cacheable
     @Headers("Content-Type: application/json")
-    @GET("{tournamentId}/teams")
-    fun getTurnamentsLeaderboard(@Path("turnamentId") turnamentId: String): Call<JsonObject>
+    @GET("tournaments/{tournamentId}/teams?ScoreOrder=desc")
+    fun getTurnamentsLeaderboard(@Path("tournamentId") turnamentId: String): Call<JsonObject>
 
     @Cacheable
     @Headers("Content-Type: application/json")
-    @GET("{tournamentId}/participations")
-    fun getTurnamentsParticipation(@Path("turnamentId") turnamentId: String): Call<JsonObject>
+    @GET("tournaments/{tournamentId}/participations")
+    fun getTurnamentsParticipation(@Path("tournamentId") turnamentId: String): Call<JsonObject>
 
 }

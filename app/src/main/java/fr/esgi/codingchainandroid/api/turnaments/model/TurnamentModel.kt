@@ -1,4 +1,4 @@
-package fr.esgi.codingchainandroid.api.turnaments
+package fr.esgi.codingchainandroid.api.turnaments.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

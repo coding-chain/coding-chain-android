@@ -10,12 +10,13 @@ import android.widget.TextView
 import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.TurnamentViewActivity
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
+import org.w3c.dom.Text
 
-
-class TurnamentsAdapater(
+class TurnamentLeaderBoardAdapter(
     private val context: Context,
-    private val dataSource: ArrayList<TurnamentModel>
+    private val dataSource: ArrayList<TurnamentLeaderBoardModel>
 ) :
     BaseAdapter() {
     private val inflater: LayoutInflater =
@@ -25,7 +26,7 @@ class TurnamentsAdapater(
         return dataSource.size
     }
 
-    override fun getItem(position: Int): TurnamentModel {
+    override fun getItem(position: Int): TurnamentLeaderBoardModel {
         return dataSource[position]
     }
 
@@ -33,40 +34,43 @@ class TurnamentsAdapater(
         return position.toLong()
     }
 
+    fun getItemPosition(itemId: String): Int {
+        val dataSourceIds = dataSource.map { leaderboard -> leaderboard.id }
+        return dataSourceIds.indexOf(itemId) + 1
+    }
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View
         val holder: ViewHolder
 
         if (convertView == null) {
-            view = inflater.inflate(R.layout.turnament_item, parent, false)
+            view = inflater.inflate(R.layout.tunament_view_ranking_item, parent, false)
 
             holder = ViewHolder()
-            holder.name = view.findViewById(R.id.turnament_name) as TextView
-            holder.participations = view.findViewById(R.id.participent_number) as TextView
+            holder.name = view.findViewById(R.id.team_name) as TextView
+            holder.score = view.findViewById(R.id.team_score) as TextView
+            holder.position = view.findViewById(R.id.team_position) as TextView
             view.tag = holder
         } else {
             view = convertView
             holder = convertView.tag as ViewHolder
         }
 
-        val turnament = getItem(position)
-
-        view.setOnClickListener {
-            val intent = Intent(context,TurnamentViewActivity::class.java)
-            intent.putExtra("turnament", Gson().toJson(turnament))
-            context.startActivity(intent)
-        }
+        val leaderBoard = getItem(position)
 
         val name = holder.name
-        val participation = holder.participations
+        val score = holder.score
+        val position = holder.position
 
-        name.text = turnament.name
-        participation.text = turnament.participationsIds.size.toString()
+        name.text = leaderBoard.name
+        score.text = leaderBoard.score.toString()
+        position.text = getItemPosition(leaderBoard.id).toString()
         return view
     }
 
     private class ViewHolder {
         lateinit var name: TextView
-        lateinit var participations: TextView
+        lateinit var score: TextView
+        lateinit var position: TextView
     }
 }

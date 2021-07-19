@@ -11,9 +11,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import fr.esgi.codingchainandroid.adapters.TeamAdapter
 import fr.esgi.codingchainandroid.adapters.TurnamentsAdapater
-import fr.esgi.codingchainandroid.api.turnaments.TurnamentModel
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
 import fr.esgi.codingchainandroid.api.turnaments.service.TurnamentService
 
 class TournamentsActivity : AppCompatActivity() {
