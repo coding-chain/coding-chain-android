@@ -8,13 +8,15 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
-import fr.esgi.codingchainandroid.api.user.service.LoginService
-import fr.esgi.codingchainandroid.model.LoginModel
+import fr.esgi.codingchainandroid.api.user.model.LoginApiModel
 import fr.esgi.codingchainandroid.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.login_activity.*
+import kotlinx.android.synthetic.main.login_activity.back_button
+import kotlinx.android.synthetic.main.login_activity.error
+import kotlinx.android.synthetic.main.login_activity.progress
+import kotlinx.android.synthetic.main.register_activity.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -32,14 +34,10 @@ class LoginActivity : AppCompatActivity() {
         var hasError = false;
         if (email.isEmpty() || password.isEmpty() || email.isBlank()
             || password.isBlank()) {
-                loginViewModel.errorLiveData.observe(this, Observer {
-                    error.text = getText(R.string.fill_fields)
-                })
-            hasError = true;
+                error.text = getText(R.string.fill_fields)
+                hasError = true;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            loginViewModel.errorLiveData.observe(this, Observer {
-                error.text = getText(R.string.wrong_email)
-            })
+            error.text = getText(R.string.wrong_email)
             hasError = true;
         }else{
             error.visibility = View.GONE;
@@ -55,27 +53,21 @@ class LoginActivity : AppCompatActivity() {
             progress.visibility = View.VISIBLE
             login_submit.isEnabled = false
             error.visibility = View.GONE;
-            val loginService = LoginService(this.applicationContext)
 
-            var response: JsonObject?
-
-            loginService.loginUser(LoginModel(email, password, "")) { loginResponse ->
-                response = loginResponse
-                if (response !== null) {
-                    AppPreferences.token = response!!.get("token").asString
-
-                    val intent = Intent(this, HomeActivity::class.java);
-                    startActivity(intent)
-                } else {
-                    loginViewModel.errorLiveData.observe(this, Observer {
-                        error.text = getText(R.string.login_error)
-                    })
-                    error.visibility = View.GONE;
-
-                }
-                progress.visibility = View.INVISIBLE
-                login_submit.isEnabled = true
-            }
+            loginViewModel.login(this, LoginApiModel(email, password))
+                .observe(this, Observer {
+                    if(it.error != "" && it.error != null){
+                        error.text = it.error
+                        error.visibility = View.VISIBLE
+                    }else{
+                        error.visibility = View.GONE
+                        AppPreferences.token = it.token
+                        val intent = Intent(this, HomeActivity::class.java);
+                        startActivity(intent)
+                    }
+                    progress.visibility = View.INVISIBLE
+                    register_submit.isEnabled = true
+                })
         }else{
             error.visibility = View.VISIBLE;
         }

@@ -1,23 +1,29 @@
 package fr.esgi.codingchainandroid.viewmodel
 
-import androidx.lifecycle.LiveData
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import fr.esgi.codingchainandroid.R
+import fr.esgi.codingchainandroid.api.user.model.LoginApiModel
+import fr.esgi.codingchainandroid.api.user.service.LoginService
 import fr.esgi.codingchainandroid.model.LoginModel
 
 class LoginViewModel : ViewModel(){
 
-    private val model = LoginModel("","","");
+    var loginLiveData = MutableLiveData<LoginModel>()
 
-    val errorLiveData = MutableLiveData<String>()
-
-    fun getUpdatedError() {
-        val updatedText = model.error
-        errorLiveData.postValue(updatedText)
-    }
-
-    fun setUpdatedError() {
-        val updatedText = model.error
-        errorLiveData.postValue(updatedText)
+    fun login(context: Context, data: LoginApiModel): MutableLiveData<LoginModel> {
+        val loginService = LoginService(context)
+        val model = LoginModel(null, "")
+        loginService.loginUser(data) { response ->
+            if(response != null){
+                model.error = null
+                model.token = response.get("token").toString()
+            }else{
+                model.error = context.getText(R.string.login_error).toString()
+            }
+            loginLiveData.value = model
+        }
+        return loginLiveData
     }
 }

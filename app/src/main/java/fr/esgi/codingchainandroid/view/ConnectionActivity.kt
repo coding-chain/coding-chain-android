@@ -2,9 +2,9 @@ package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import fr.esgi.codingchainandroid.R
+import kotlinx.android.synthetic.main.connection_activity.*
 
 class ConnectionActivity : AppCompatActivity() {
 
@@ -15,14 +15,12 @@ class ConnectionActivity : AppCompatActivity() {
     }
 
     private fun onClicks(){
-        val loginButton = findViewById<Button>(R.id.login_button)
-        loginButton.setOnClickListener {
+        login_button.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java);
             startActivity(intent)
         }
 
-        val registerButton = findViewById<Button>(R.id.register_button)
-        registerButton.setOnClickListener {
+        register_button.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java);
             startActivity(intent)
         }

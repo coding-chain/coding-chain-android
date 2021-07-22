@@ -4,16 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.model.RegisterModel
-import fr.esgi.codingchainandroid.api.user.service.RegisterService
+import fr.esgi.codingchainandroid.api.user.model.RegisterApiModel
 import fr.esgi.codingchainandroid.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
 import kotlinx.android.synthetic.main.register_activity.back_button
 import kotlinx.android.synthetic.main.register_activity.error
@@ -38,19 +34,13 @@ class RegisterActivity: AppCompatActivity() {
         if (email.isEmpty() || password.isEmpty() || email.isBlank()
             || password.isBlank() || passwordConfirm.isEmpty() || passwordConfirm.isBlank()
             || username.isEmpty() || username.isBlank()) {
-            registerViewModel.errorLiveData.observe(this, Observer {
                 error.text = getText(R.string.fill_fields)
-            })
-            hasError = true;
+                hasError = true;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            registerViewModel.errorLiveData.observe(this, Observer {
-                error.text = getText(R.string.wrong_email)
-            })
+            error.text = getText(R.string.wrong_email)
             hasError = true;
         }else if(!password.equals(passwordConfirm)){
-            registerViewModel.errorLiveData.observe(this, Observer {
-                error.text = getText(R.string.different_passwords)
-            })
+            error.text = getText(R.string.different_passwords)
             hasError = true;
         }
         else{
@@ -68,26 +58,21 @@ class RegisterActivity: AppCompatActivity() {
             progress.visibility = View.VISIBLE
             register_submit.isEnabled = false
             error.visibility = View.INVISIBLE;
-            val registerService = RegisterService(this.applicationContext)
 
-            var response: JsonObject?
-
-            registerService.register(RegisterModel(email, password, null, null, username)) {
-                    registerResponse ->
-                response = registerResponse
-                if (response !== null) {
-                    val intent = Intent(this, LoginActivity::class.java);
-                    startActivity(intent)
-                } else {
-                    registerViewModel.errorLiveData.observe(this, Observer {
-                        error.text = getText(R.string.register_error)
-                    })
-                    error.visibility = View.VISIBLE;
-                }
-                progress.visibility = View.INVISIBLE
-                register_submit.isEnabled = true
-            }
-            progress.visibility = View.INVISIBLE
+            registerViewModel.register(this, RegisterApiModel(email, password, username))
+                ?.observe(this, Observer {
+                    if(it != "" && it != null){
+                        error.text = it
+                        error.visibility = View.VISIBLE
+                    }else{
+                        error.visibility = View.GONE
+                        val intent = Intent(this, LoginActivity::class.java);
+                        startActivity(intent)
+                    }
+                    error.text = it
+                    progress.visibility = View.INVISIBLE
+                    register_submit.isEnabled = true
+                })
         }else{
             error.visibility = View.VISIBLE;
         }

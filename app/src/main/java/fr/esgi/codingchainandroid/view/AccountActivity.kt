@@ -23,7 +23,7 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account_activity)
         userViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-        user = UserModel(null, null, null, null, null, null)
+        user = UserModel(null, null, null, null)
         onClicks()
         fetchMe()
     }

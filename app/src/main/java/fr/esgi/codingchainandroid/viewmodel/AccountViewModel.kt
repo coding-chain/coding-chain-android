@@ -1,20 +1,19 @@
 package fr.esgi.codingchainandroid.viewmodel
 
 import android.content.Context
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import com.google.gson.JsonObject
-import fr.esgi.codingchainandroid.R
+import com.google.gson.reflect.TypeToken
 import fr.esgi.codingchainandroid.api.right.service.RightService
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentApiModel
+import fr.esgi.codingchainandroid.api.user.model.UserApiModel
 import fr.esgi.codingchainandroid.api.user.service.UserService
 import fr.esgi.codingchainandroid.model.RegisterModel
 import fr.esgi.codingchainandroid.model.RightModel
-import fr.esgi.codingchainandroid.model.TeamModel
 import fr.esgi.codingchainandroid.model.UserModel
-import kotlinx.android.synthetic.main.account_activity.*
 
 class AccountViewModel : ViewModel(){
 
@@ -40,14 +39,12 @@ class AccountViewModel : ViewModel(){
 
         userService.getUser() { response ->
             if (response !== null) {
+
+                val userType = object : TypeToken<UserApiModel>() {}.type
                 val user = UserModel(
-                    response.get("id").asString,
                     response.get("email").asString,
                     response.get("username").asString,
-                    rightIds,
-                    rightsList,
-                    ""
-                                )
+                    ArrayList(), null)
                 userLiveData.value = user
                 val jsonRightIds = response.get("rightIds").asJsonArray
                 for (i in 0 until jsonRightIds.size()) {
@@ -71,4 +68,9 @@ class AccountViewModel : ViewModel(){
         }
         return userLiveData
     }
+
+    private fun toUserModel (model : UserApiModel): UserModel {
+        return UserModel(model.email, model.username, null, null)
+    }
+
 }
