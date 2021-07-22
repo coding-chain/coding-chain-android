@@ -1,18 +1,13 @@
 package fr.esgi.codingchainandroid.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.TurnamentViewActivity
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
-import org.w3c.dom.Text
 
 class TurnamentLeaderBoardAdapter(
     private val context: Context,

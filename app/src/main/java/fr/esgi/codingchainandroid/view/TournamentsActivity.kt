@@ -2,12 +2,7 @@ package fr.esgi.codingchainandroid.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ListView
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -15,6 +10,7 @@ import fr.esgi.codingchainandroid.adapters.TurnamentsAdapater
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
 import fr.esgi.codingchainandroid.api.turnaments.service.TurnamentService
 import fr.esgi.codingchainandroid.R
+import kotlinx.android.synthetic.main.turnaments_activity.*
 
 class TournamentsActivity : AppCompatActivity() {
 
@@ -26,44 +22,34 @@ class TournamentsActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        val backButton = findViewById<ImageButton>(R.id.back_button)
-        backButton.setOnClickListener {
+        back_button.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java);
             startActivity(intent)
         }
     }
 
     private fun fetchTurnaments() {
-        val loader = findViewById<ProgressBar>(R.id.progress)
-        val turnamentList = findViewById<ListView>(R.id.turnament_list)
-        val noResult = findViewById<TextView>(R.id.no_result)
-        loader.visibility = View.VISIBLE
+        progress.visibility = View.VISIBLE
         val turnamentsService = TurnamentService(this.applicationContext)
         val turnaments: ArrayList<TurnamentModel> = ArrayList()
         val adapter = TurnamentsAdapater(this, turnaments)
 
-        turnamentList.adapter = adapter
+        turnament_list.adapter = adapter
         turnamentsService.getPublishedTurnaments { response ->
             if (response != null) {
                 val items = response.get("result").asJsonArray
-                Log.d("Reponse", items.toString());
                 items.forEach { item ->
                     val result = item.asJsonObject
                     val turnament = result.get("result")
-                    Log.d("Reponse", turnament.toString());
-
                     val turnamentType = object : TypeToken<TurnamentModel>() {}.type
-
                     turnaments.add(Gson().fromJson(turnament, turnamentType))
                     adapter.notifyDataSetChanged()
                 }
-                loader.visibility = View.GONE
-
-                Log.d("Turnements", turnaments.toString())
+                progress.visibility = View.GONE
             }
             else{
-                noResult.visibility = View.VISIBLE
-                loader.visibility = View.GONE
+                no_result.visibility = View.VISIBLE
+                progress.visibility = View.GONE
             }
 
         }

@@ -10,12 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.model.RegisterModel
-import fr.esgi.codingchainandroid.api.user.service.UserService
 import fr.esgi.codingchainandroid.model.UserModel
 import fr.esgi.codingchainandroid.viewmodel.AccountViewModel
 import kotlinx.android.synthetic.main.account_activity.*
-import kotlinx.android.synthetic.main.account_activity.back_button
-import kotlinx.android.synthetic.main.account_activity.progress
 
 class AccountActivity : AppCompatActivity() {
 

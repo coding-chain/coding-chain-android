@@ -9,7 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.TurnamentViewActivity
+import fr.esgi.codingchainandroid.view.TurnamentViewActivity
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
 
 
@@ -52,7 +52,7 @@ class TurnamentsAdapater(
         val turnament = getItem(position)
 
         view.setOnClickListener {
-            val intent = Intent(context,TurnamentViewActivity::class.java)
+            val intent = Intent(context, TurnamentViewActivity::class.java)
             intent.putExtra("turnament", Gson().toJson(turnament))
             context.startActivity(intent)
         }
