@@ -26,8 +26,8 @@ data class TurnamentModel(
     val endDate: String,
     @Expose
     @SerializedName("stepsIds")
-    val stepsIds: Array<String>,
+    val stepsIds: List<String>,
     @Expose
     @SerializedName("participationsIds")
-    val participationsIds: Array<String>,
+    val participationsIds: List<String>,
 )
