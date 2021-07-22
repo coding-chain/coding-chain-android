@@ -48,4 +48,5 @@
     <string name="new_password_hint">Enter your new password here</string>
     <string name="modify_success">Account modification successful</string>
     <string name="new_confirm_password_hint">Confirm new password</string>
+    <string name="no_teams_yet">No teams yet</string>
 </resources>
