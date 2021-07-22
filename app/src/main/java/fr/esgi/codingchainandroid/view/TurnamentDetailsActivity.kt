@@ -13,8 +13,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.adapters.TurnamentLeaderBoardAdapter
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardApiModel
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentApiModel
+import fr.esgi.codingchainandroid.model.TournamentLeaderBoardModel
 import fr.esgi.codingchainandroid.viewmodel.TournamentDetailsViewModel
 import kotlinx.android.synthetic.main.turnament_details.*
 import kotlinx.android.synthetic.main.turnament_details.back_button
@@ -22,15 +23,15 @@ import kotlinx.android.synthetic.main.turnament_details.no_result
 import kotlinx.android.synthetic.main.turnament_details.progress
 
 class TurnamentDetailsActivity : AppCompatActivity(), LayoutInflater.Factory {
-    lateinit var turnament: TurnamentModel
+    lateinit var turnamentApi: TurnamentApiModel
     lateinit var tournamentDetailsViewModel: TournamentDetailsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.turnament_details)
         tournamentDetailsViewModel = ViewModelProvider(this).get(TournamentDetailsViewModel::class.java)
         onClicks()
-        val turnamentType = object : TypeToken<TurnamentModel>() {}.type
-        turnament = Gson().fromJson(this.intent.getStringExtra("turnament"), turnamentType)
+        val turnamentType = object : TypeToken<TurnamentApiModel>() {}.type
+        turnamentApi = Gson().fromJson(this.intent.getStringExtra("turnament"), turnamentType)
         populateView()
         fetchLeaderBoard()
     }
@@ -44,15 +45,16 @@ class TurnamentDetailsActivity : AppCompatActivity(), LayoutInflater.Factory {
 
     private fun fetchLeaderBoard() {
         progress.visibility = View.VISIBLE
-        val leaderBoard: ArrayList<TurnamentLeaderBoardModel> = ArrayList()
-        val adapter = TurnamentLeaderBoardAdapter(this,leaderBoard)
+        val leaderBoardApi: ArrayList<TournamentLeaderBoardModel> = ArrayList()
+        val adapter = TurnamentLeaderBoardAdapter(this,leaderBoardApi)
         leaderboard_list.adapter = adapter
 
-        tournamentDetailsViewModel.getLeaderBoard(this.applicationContext, this.turnament.id)!!.observe(this, Observer { result ->
+        tournamentDetailsViewModel.getLeaderBoard(this.applicationContext, this.turnamentApi.id)
+            .observe(this, Observer { result ->
 
             if(result != null){
-                leaderBoard.clear()
-                leaderBoard.addAll(result)
+                leaderBoardApi.clear()
+                leaderBoardApi.addAll(result)
                 adapter.notifyDataSetChanged()
             }else{
                 no_result.visibility = View.VISIBLE
@@ -62,9 +64,9 @@ class TurnamentDetailsActivity : AppCompatActivity(), LayoutInflater.Factory {
     }
 
     private fun populateView() {
-        turnament_name.text = turnament.name
-        turnament_subtitle.text = stripHtml(turnament.description)
-        turnament_steps.text = turnament.stepsIds.size.toString()
+        turnament_name.text = turnamentApi.name
+        turnament_subtitle.text = stripHtml(turnamentApi.description)
+        turnament_steps.text = turnamentApi.stepsIds.size.toString()
     }
 
     @SuppressLint("NewApi")

@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardApiModel
+import fr.esgi.codingchainandroid.model.TournamentLeaderBoardModel
 
 class TurnamentLeaderBoardAdapter(
     private val context: Context,
-    private val dataSource: ArrayList<TurnamentLeaderBoardModel>
+    private val dataSource: ArrayList<TournamentLeaderBoardModel>
 ) :
     BaseAdapter() {
     private val inflater: LayoutInflater =
@@ -21,7 +22,7 @@ class TurnamentLeaderBoardAdapter(
         return dataSource.size
     }
 
-    override fun getItem(position: Int): TurnamentLeaderBoardModel {
+    override fun getItem(position: Int): TournamentLeaderBoardModel {
         return dataSource[position]
     }
 

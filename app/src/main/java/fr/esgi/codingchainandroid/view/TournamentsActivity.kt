@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import fr.esgi.codingchainandroid.adapters.TurnamentsAdapater
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
 import fr.esgi.codingchainandroid.R
+import fr.esgi.codingchainandroid.model.TournamentModel
 import fr.esgi.codingchainandroid.viewmodel.TournamentViewModel
 import kotlinx.android.synthetic.main.turnaments_activity.*
 import kotlinx.android.synthetic.main.turnaments_activity.back_button
@@ -34,8 +34,8 @@ class TournamentsActivity : AppCompatActivity() {
 
     private fun fetchTurnaments() {
         progress.visibility = View.VISIBLE
-        val turnaments: ArrayList<TurnamentModel> = ArrayList()
-        val adapter = TurnamentsAdapater(this, turnaments)
+        val turnamentApis: ArrayList<TournamentModel> = ArrayList()
+        val adapter = TurnamentsAdapater(this, turnamentApis)
 
         turnament_list.adapter = adapter
         progress.visibility = View.VISIBLE
@@ -43,8 +43,8 @@ class TournamentsActivity : AppCompatActivity() {
         tournamentViewModel.getTournaments(this.applicationContext)!!.observe(this, Observer { result ->
 
             if(result != null){
-                turnaments.clear()
-                turnaments.addAll(result)
+                turnamentApis.clear()
+                turnamentApis.addAll(result)
                 adapter.notifyDataSetChanged()
             }else{
                 no_result.visibility = View.VISIBLE

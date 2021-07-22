@@ -3,7 +3,7 @@ package fr.esgi.codingchainandroid.api.turnaments.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class TurnamentLeaderBoardModel(
+data class TurnamentLeaderBoardApiModel(
     @Expose
     @SerializedName("id")
     val id: String,

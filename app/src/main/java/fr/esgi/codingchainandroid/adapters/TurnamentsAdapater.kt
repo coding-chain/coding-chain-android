@@ -10,12 +10,12 @@ import android.widget.TextView
 import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.view.TurnamentDetailsActivity
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
+import fr.esgi.codingchainandroid.model.TournamentModel
 
 
 class TurnamentsAdapater(
     private val context: Context,
-    private val dataSource: ArrayList<TurnamentModel>
+    private val dataSource: ArrayList<TournamentModel>
 ) :
     BaseAdapter() {
     private val inflater: LayoutInflater =
@@ -25,7 +25,7 @@ class TurnamentsAdapater(
         return dataSource.size
     }
 
-    override fun getItem(position: Int): TurnamentModel {
+    override fun getItem(position: Int): TournamentModel {
         return dataSource[position]
     }
 

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-data class TurnamentModel(
+data class TurnamentApiModel(
     @Expose
     @SerializedName("id")
     val id: String,
