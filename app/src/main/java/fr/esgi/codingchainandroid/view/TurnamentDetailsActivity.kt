@@ -6,24 +6,28 @@ import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ListView
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.adapters.TurnamentLeaderBoardAdapter
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
-import fr.esgi.codingchainandroid.api.turnaments.service.TurnamentService
-import kotlinx.android.synthetic.main.turnament_view.*
+import fr.esgi.codingchainandroid.viewmodel.TournamentDetailsViewModel
+import kotlinx.android.synthetic.main.turnament_details.*
+import kotlinx.android.synthetic.main.turnament_details.back_button
+import kotlinx.android.synthetic.main.turnament_details.no_result
+import kotlinx.android.synthetic.main.turnament_details.progress
 
-class TurnamentViewActivity : AppCompatActivity(), LayoutInflater.Factory {
+class TurnamentDetailsActivity : AppCompatActivity(), LayoutInflater.Factory {
     lateinit var turnament: TurnamentModel
+    lateinit var tournamentDetailsViewModel: TournamentDetailsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.turnament_view)
+        setContentView(R.layout.turnament_details)
+        tournamentDetailsViewModel = ViewModelProvider(this).get(TournamentDetailsViewModel::class.java)
         onClicks()
         val turnamentType = object : TypeToken<TurnamentModel>() {}.type
         turnament = Gson().fromJson(this.intent.getStringExtra("turnament"), turnamentType)
@@ -40,29 +44,22 @@ class TurnamentViewActivity : AppCompatActivity(), LayoutInflater.Factory {
 
     private fun fetchLeaderBoard() {
         progress.visibility = View.VISIBLE
-        val turnamentsService = TurnamentService(this.applicationContext)
         val leaderBoard: ArrayList<TurnamentLeaderBoardModel> = ArrayList()
         val adapter = TurnamentLeaderBoardAdapter(this,leaderBoard)
         leaderboard_list.adapter = adapter
-        turnamentsService.getTurnamentLeaderBoard(this.turnament.id){ response ->
-            if(response != null){
-                val items = response.get("result").asJsonArray
-                items.forEach { item ->
-                    val result = item.asJsonObject
-                    val leaderboardItem = result.get("result")
-                    val leaderboardType = object : TypeToken<TurnamentLeaderBoardModel>() {}.type
-                    leaderBoard.add(Gson().fromJson(leaderboardItem,leaderboardType))
-                    adapter.notifyDataSetChanged()
-                }
-                progress.visibility = View.GONE
-            }
-            else {
-                no_result.visibility = View.VISIBLE
-                progress.visibility = View.GONE
-            }
-        }
-    }
 
+        tournamentDetailsViewModel.getLeaderBoard(this.applicationContext, this.turnament.id)!!.observe(this, Observer { result ->
+
+            if(result != null){
+                leaderBoard.clear()
+                leaderBoard.addAll(result)
+                adapter.notifyDataSetChanged()
+            }else{
+                no_result.visibility = View.VISIBLE
+            }
+            progress.visibility = View.GONE
+        })
+    }
 
     private fun populateView() {
         turnament_name.text = turnament.name

@@ -28,7 +28,7 @@
         <activity android:name=".view.TournamentsActivity" />
         <activity android:name=".view.TeamActivity" />
         <activity android:name=".view.AccountActivity" />
-        <activity android:name=".view.TurnamentViewActivity" />
+        <activity android:name=".view.TurnamentDetailsActivity" />
     </application>
 
 </manifest>

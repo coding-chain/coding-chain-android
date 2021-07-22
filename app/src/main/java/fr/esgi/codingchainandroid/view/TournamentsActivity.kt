@@ -6,14 +6,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import fr.esgi.codingchainandroid.adapters.TurnamentsAdapater
 import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
-import fr.esgi.codingchainandroid.api.turnaments.service.TurnamentService
 import fr.esgi.codingchainandroid.R
 import fr.esgi.codingchainandroid.viewmodel.TournamentViewModel
-import kotlinx.android.synthetic.main.account_activity.*
 import kotlinx.android.synthetic.main.turnaments_activity.*
 import kotlinx.android.synthetic.main.turnaments_activity.back_button
 import kotlinx.android.synthetic.main.turnaments_activity.progress

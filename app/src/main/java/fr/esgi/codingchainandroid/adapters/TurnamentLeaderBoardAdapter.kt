@@ -39,7 +39,7 @@ class TurnamentLeaderBoardAdapter(
         val holder: ViewHolder
 
         if (convertView == null) {
-            view = inflater.inflate(R.layout.tunament_view_ranking_item, parent, false)
+            view = inflater.inflate(R.layout.tunament_details_ranking_item, parent, false)
 
             holder = ViewHolder()
             holder.name = view.findViewById(R.id.team_name) as TextView
