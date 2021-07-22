@@ -26,6 +26,7 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account_activity)
         userViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+        user = UserModel(null, null, null, null, null, null)
         onClicks()
         fetchMe()
     }
@@ -35,15 +36,17 @@ class AccountActivity : AppCompatActivity() {
 
         userViewModel.getUser(this.applicationContext)!!.observe(this, Observer { result ->
             progress.visibility = View.VISIBLE
-            if (result.rights.isNotEmpty()) {
+            if (result.rights?.isNotEmpty() == true) {
                 var rightsStr = ""
-                result.rights.forEach{
+                result.rights!!.forEach{
                     rightsStr += it.name + " "
                 }
                 rights.text = getString(R.string.account_rights, rightsStr)
             } else {
                 rights.text = getString(R.string.account_rights, getString(R.string.none))
             }
+            user!!.email = result.email
+            user!!.username = result.username
             email.setText(result.email)
             username.setText(result.username)
             progress.visibility = View.GONE
@@ -51,8 +54,6 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun updateMe() {
-        val userService = UserService(this.applicationContext)
-
         val data = RegisterModel(null, null, null, null,null)
         var hasError = false
 
@@ -80,17 +81,18 @@ class AccountActivity : AppCompatActivity() {
         }else{
             modify.isEnabled = false
             progress.visibility = View.VISIBLE
-            userService.updateMe(data) { response ->
-                if(response != null){
+            userViewModel.updateMe(this.applicationContext, data)!!.observe(this, Observer { result ->
+                progress.visibility = View.VISIBLE
+                if(result == "SUCCESS"){
                     error.visibility = View.GONE
                     Toast.makeText(this, getText(R.string.modify_success), Toast.LENGTH_LONG).show();
-                }else{
+                }else if(result == "ERROR"){
                     error.visibility = View.VISIBLE
                     error.text = getString(R.string.an_error_occured_during_modify)
                 }
                 progress.visibility = View.GONE
                 modify.isEnabled = true
-            }
+            })
         }
     }
 

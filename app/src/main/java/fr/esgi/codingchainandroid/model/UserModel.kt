@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName
 data class UserModel (
     @Expose
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @Expose
     @SerializedName("email")
-    var email: String,
+    var email: String?,
     @Expose
     @SerializedName("username")
-    var username: String,
+    var username: String?,
     @Expose
     @SerializedName("rightIds")
-    var rightIds: List<String>,
+    var rightIds: List<String>?,
 
-    var rights: List<RightModel>,
-    val error: String
+    var rights: List<RightModel>?,
+    val error: String?
 )
