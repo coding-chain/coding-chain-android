@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun manageError(email: String, password: String): Boolean {
-        val error = findViewById<TextView>(R.id.error)
         var hasError = false;
         if (email.isEmpty() || password.isEmpty() || email.isBlank()
             || password.isBlank()) {
@@ -84,8 +83,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onClicks() {
-        val backButton = findViewById<ImageButton>(R.id.back_button)
-        backButton.setOnClickListener {
+        back_button.setOnClickListener {
             val intent = Intent(this, ConnectionActivity::class.java);
             startActivity(intent)
         }

@@ -11,6 +11,8 @@ data class RegisterModel(
     @Expose
     @SerializedName("password")
     var password: String?,
+    var confirmPassword: String?,
+    var error: String?,
     @Expose
     @SerializedName("username")
     var username: String?,

@@ -8,18 +8,14 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.api.right.service.RightService
 import fr.esgi.codingchainandroid.model.RegisterModel
 import fr.esgi.codingchainandroid.api.user.service.UserService
 import fr.esgi.codingchainandroid.model.UserModel
 import fr.esgi.codingchainandroid.viewmodel.AccountViewModel
-import fr.esgi.codingchainandroid.viewmodel.TeamViewModel
 import kotlinx.android.synthetic.main.account_activity.*
 import kotlinx.android.synthetic.main.account_activity.back_button
 import kotlinx.android.synthetic.main.account_activity.progress
-import kotlinx.android.synthetic.main.team_activity.*
 
 class AccountActivity : AppCompatActivity() {
 
@@ -57,7 +53,7 @@ class AccountActivity : AppCompatActivity() {
     private fun updateMe() {
         val userService = UserService(this.applicationContext)
 
-        val data = RegisterModel(null, null, null)
+        val data = RegisterModel(null, null, null, null,null)
         var hasError = false
 
         if(password.text.toString() != "" && password_confirm.text.toString() != ""){
