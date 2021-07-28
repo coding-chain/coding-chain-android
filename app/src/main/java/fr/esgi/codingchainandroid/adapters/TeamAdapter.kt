@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.api.team.model.TeamModel
+import fr.esgi.codingchainandroid.model.TeamModel
 
 class TeamAdapter(private val context: Context,
                       private val dataSource: ArrayList<TeamModel>) : BaseAdapter() {

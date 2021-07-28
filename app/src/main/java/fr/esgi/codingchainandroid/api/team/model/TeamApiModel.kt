@@ -1,9 +1,9 @@
-package fr.esgi.codingchainandroid.api.turnaments.model
+package fr.esgi.codingchainandroid.api.team.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class TurnamentLeaderBoardModel(
+data class TeamApiModel(
     @Expose
     @SerializedName("id")
     val id: String,
@@ -11,10 +11,7 @@ data class TurnamentLeaderBoardModel(
     @SerializedName("name")
     val name: String,
     @Expose
-    @SerializedName("score")
-    val score: Double,
-    @Expose
-    @SerializedName("hasFinished")
-    val hasFinished: Boolean
+    @SerializedName("membersIds")
+    val membersIds: List<String>,
 
 )

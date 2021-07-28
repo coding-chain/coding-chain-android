@@ -6,7 +6,8 @@ import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.api.provider.ApiClient
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 import fr.esgi.codingchainandroid.api.user.api.UserInterface
-import fr.esgi.codingchainandroid.api.user.model.LoginModel
+import fr.esgi.codingchainandroid.api.user.model.LoginApiModel
+import fr.esgi.codingchainandroid.model.LoginModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +16,7 @@ class LoginService (private val context: Context) {
     private val token: String
     get() = AppPreferences.token
 
-    fun loginUser(loginData: LoginModel, onResult: (JsonObject?) -> Unit) {
+    fun loginUser(loginData: LoginApiModel, onResult: (JsonObject?) -> Unit) {
         val call: Call<JsonObject> = ApiClient.buildService(UserInterface::class.java, this.context)
             .loginUser(loginData)
         call.enqueue(object : Callback<JsonObject> {
