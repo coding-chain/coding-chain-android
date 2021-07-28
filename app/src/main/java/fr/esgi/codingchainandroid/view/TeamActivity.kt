@@ -38,8 +38,8 @@ class TeamActivity : AppCompatActivity() {
         val adapter = TeamAdapter(this, teams)
         team_list.adapter = adapter
 
+        progress.visibility = View.VISIBLE
         teamViewModel.getMyTeam(this.applicationContext)!!.observe(this, Observer { t ->
-            progress.visibility = View.VISIBLE
             if (t.size > 0) {
                 data.visibility = View.VISIBLE
                 no_result.visibility = View.GONE
