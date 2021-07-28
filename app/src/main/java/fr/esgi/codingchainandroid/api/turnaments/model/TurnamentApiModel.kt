@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-data class TurnamentModel(
+data class TurnamentApiModel(
     @Expose
     @SerializedName("id")
     val id: String,
@@ -26,8 +26,8 @@ data class TurnamentModel(
     val endDate: String,
     @Expose
     @SerializedName("stepsIds")
-    val stepsIds: Array<String>,
+    val stepsIds: List<String>,
     @Expose
     @SerializedName("participationsIds")
-    val participationsIds: Array<String>,
+    val participationsIds: List<String>,
 )

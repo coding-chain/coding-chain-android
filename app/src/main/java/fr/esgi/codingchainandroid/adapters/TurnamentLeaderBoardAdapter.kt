@@ -1,22 +1,18 @@
 package fr.esgi.codingchainandroid.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.google.gson.Gson
 import fr.esgi.codingchainandroid.R
-import fr.esgi.codingchainandroid.TurnamentViewActivity
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardModel
-import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentModel
-import org.w3c.dom.Text
+import fr.esgi.codingchainandroid.api.turnaments.model.TurnamentLeaderBoardApiModel
+import fr.esgi.codingchainandroid.model.TournamentLeaderBoardModel
 
 class TurnamentLeaderBoardAdapter(
     private val context: Context,
-    private val dataSource: ArrayList<TurnamentLeaderBoardModel>
+    private val dataSource: ArrayList<TournamentLeaderBoardModel>
 ) :
     BaseAdapter() {
     private val inflater: LayoutInflater =
@@ -26,7 +22,7 @@ class TurnamentLeaderBoardAdapter(
         return dataSource.size
     }
 
-    override fun getItem(position: Int): TurnamentLeaderBoardModel {
+    override fun getItem(position: Int): TournamentLeaderBoardModel {
         return dataSource[position]
     }
 
@@ -44,7 +40,7 @@ class TurnamentLeaderBoardAdapter(
         val holder: ViewHolder
 
         if (convertView == null) {
-            view = inflater.inflate(R.layout.tunament_view_ranking_item, parent, false)
+            view = inflater.inflate(R.layout.tunament_details_ranking_item, parent, false)
 
             holder = ViewHolder()
             holder.name = view.findViewById(R.id.team_name) as TextView

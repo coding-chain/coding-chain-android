@@ -6,7 +6,7 @@ import com.google.gson.JsonObject
 import fr.esgi.codingchainandroid.api.provider.ApiClient
 import fr.esgi.codingchainandroid.api.provider.AppPreferences
 import fr.esgi.codingchainandroid.api.user.api.UserInterface
-import fr.esgi.codingchainandroid.api.user.model.RegisterModel
+import fr.esgi.codingchainandroid.api.user.model.RegisterApiModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +15,7 @@ class RegisterService (private val context: Context) {
     private val token: String
     get() = AppPreferences.token
 
-    fun register(registerData: RegisterModel, onResult: (JsonObject?) -> Unit) {
+    fun register(registerData: RegisterApiModel, onResult: (JsonObject?) -> Unit) {
         val call: Call<JsonObject> = ApiClient.buildService(UserInterface::class.java, this.context)
             .register(registerData)
         call.enqueue(object : Callback<JsonObject> {
