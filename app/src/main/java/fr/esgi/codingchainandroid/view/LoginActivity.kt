@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     progress.visibility = View.INVISIBLE
-                    register_submit.isEnabled = true
+                    login_submit.isEnabled = true
                 })
         }else{
             error.visibility = View.VISIBLE;
